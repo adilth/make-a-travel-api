@@ -5,16 +5,19 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
+// const bodyParser = require("body-parser");
 const port = process.env.PORT || 8888;
 require("dotenv").config();
 // ========================
 // Middlewares
 // ========================
-const travelRouter = require("./routers/travel");
 app.use(cors());
-app.use(express.json());
-app.use("/travel", travelRouter);
+// app.use(express.json());
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+const travelRouter = require("./routers/travel");
+app.use("/travel", travelRouter);
 // ========================
 // router
 // ========================
