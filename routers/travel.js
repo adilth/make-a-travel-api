@@ -44,6 +44,7 @@ router.post("/api/country/", async (req, res) => {
   try {
     const newCountry = await newTravel.save();
     res.json(newCountry);
+    res.redirect("index.ejs");
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

@@ -10,6 +10,23 @@
 
 <body>
    <h1>Welcome to Our Travel API</h1>
+   <ul class="rappers">
+      <% for(let i=0; i < info.length; i++) {%>
+      <li class="rapper">
+         <span><%= info[i].name %></span>
+         <ul>
+            <% for(let j=0; j < info[i].city.length; j++) {%>
+            <span><% info[i].city[j] %> </span>
+            <% } %>
+         </ul>
+         <span><%= info[i].food %></span>
+         <span><%= info[i].sight %></span>
+         <span><%= info[i].visitings %></span>
+         <span class='fa fa-thumbs-up'></span>
+         <span class='fa fa-trash'></span>
+      </li>
+      <% } %>
+   </ul>
 </body>
 
 </html>

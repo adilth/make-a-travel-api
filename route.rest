@@ -18,6 +18,7 @@ Content-Type: application/json
    "city": ["paris","leon"],
    "food": ["bread", "bouillabaise"],
    "sight": ["none"],
+   "visitings": 780000000
 }
 
 ###

@@ -11,6 +11,7 @@ require("dotenv").config();
 // ========================
 // Middlewares
 // ========================
+app.set("view engine", "ejs");
 app.use(cors());
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 app.use(express.json()); // for parsing application/json
@@ -36,27 +37,18 @@ app.use("/travel", travelRouter);
 // ========================
 // router
 // ========================
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
-  console.log("connect");
-});
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
 app.get("/", (req, res) => {
-  res.send("hello");
+  const conn = mongoose.connection;
+  conn.db
+    .collection("travels")
+    .find()
+    .toArray()
+    .then((data) => {
+      res.render("index.ejs", { info: data });
+    })
+    .catch((error) => console.error(error));
 });
-
-// app.get("/api/countries", (req, res) => {
-//   res.json(country);
-// });
-
-// app.get("/api/countries/:name", (request, response) => {
-//   const name = Number(request.params.name);
-//   const country = countries.find((co) => co.name === name);
-//   if (country) {
-//     response.status(200).json(country);
-//   } else {
-//     response.status(404).end();
-//   }
-//   response.json(countries);
-// });
 // ========================
 // listen
 // ========================
