@@ -10,15 +10,14 @@ Get http://localhost:8888/travel/api/country/usa
 ###
 Get http://localhost:8888/travel/usa
 ###
-POST http://localhost:8888/travel/
+POST http://localhost:8888/travel
 Content-Type: application/json
 
 {
-   "name": "usa",
-   "city": ["new York","washington",""],
-   "food": ["atay", "koskos"],
+   "name": "france",
+   "city": ["paris","leon"],
+   "food": ["bread", "bouillabaise"],
    "sight": ["none"],
-   "visitings": 12000
 }
 
 ###
@@ -26,10 +25,11 @@ POST http://localhost:8888/travel/api/country
 Content-Type: application/json
 
 {
-   "name": "morocco",
-   "city": ["marrakech","casablanca"],
-   "food": ["atay", "koskos"],
-   "sight": ["none"]
+   "name": "france",
+   "city": ["paris", "leon"],
+   "food": ["bread", "bouillabaise"],
+   "sight": ["eiffel", "mousem"],
+   "visitings": 780000000
 }
 
 ###

@@ -31,6 +31,9 @@ router.get("/api/country/", async (req, res) => {
 
 //create one
 router.post("/api/country/", async (req, res) => {
+  if (Travel.findOne({ name: req.body.name })) {
+    return res.status(409).json({ message: "Please enter a Unique name." });
+  }
   const newTravel = new Travel({
     name: req.body.name,
     city: req.body.city,
@@ -40,12 +43,15 @@ router.post("/api/country/", async (req, res) => {
   });
   try {
     const newCountry = await newTravel.save();
-    res.status(201).json(newCountry);
+    res.json(newCountry);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 router.post("/", async (req, res) => {
+  if (Travel.findOne({ name: req.body.name })) {
+    return res.status(409).json({ message: "Please enter a Unique name." });
+  }
   const newTravel = new Travel({
     name: req.body.name,
     city: req.body.city,
@@ -55,7 +61,7 @@ router.post("/", async (req, res) => {
   });
   try {
     const newCountry = await newTravel.save();
-    res.status(201).json(newCountry);
+    res.json(newCountry);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

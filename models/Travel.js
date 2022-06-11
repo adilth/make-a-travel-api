@@ -4,6 +4,7 @@ const travelSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   city: {
     type: Array,
@@ -13,16 +14,16 @@ const travelSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
-  visitings: {
-    type: Number,
-    required: true,
-  },
   DateValid: {
     type: Date,
     default: Date.now(),
   },
   sight: {
     type: Array,
+    required: true,
+  },
+  visitings: {
+    type: Number,
     required: true,
   },
 });
