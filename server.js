@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 // const bodyParser = require("body-parser");
-const port = process.env.PORT || 8888;
+const PORT = process.env.PORT || 8888;
 require("dotenv").config();
 // ========================
 // Middlewares
