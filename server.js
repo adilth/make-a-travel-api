@@ -6,7 +6,6 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 // const bodyParser = require("body-parser");
-const port = process.env.PORT || 8888;
 require("dotenv").config();
 // ========================
 // Middlewares
@@ -52,4 +51,5 @@ app.get("/", (req, res) => {
 // ========================
 // listen
 // ========================
-app.listen(port);
+// const port = ;
+app.listen(process.env.PORT || 8888);
