@@ -10,10 +10,16 @@ const mongoose = require("mongoose");
 // ========================
 // Middlewares
 // ========================
+mongoose.connect(process.env.DB_CONNECT, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const travelRouter = require("./routers/travel");
+app.use("/travel", travelRouter);
 app.set("view engine", "ejs");
-app.use(cors());
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 app.use(express.json()); // for parsing application/json
+app.use(cors());
 app.use(express.json({ strict: true }));
 app.use(function (err, req, res, next) {
   if (
@@ -31,15 +37,11 @@ app.use(function (err, req, res, next) {
     next();
   }
 });
-const travelRouter = require("./routers/travel");
-app.use("/travel", travelRouter);
+
 // ========================
 // router
 // ========================
-mongoose.connect(process.env.DB_CONNECT, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
 mongoose.connection
   .once("open", function () {
     console.log("Conection has been made!");
