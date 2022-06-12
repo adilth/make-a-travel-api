@@ -1,12 +1,12 @@
 //========================
 //dependencies
 //========================
+require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 // const bodyParser = require("body-parser");
-require("dotenv").config();
 // ========================
 // Middlewares
 // ========================
@@ -37,10 +37,16 @@ app.use("/travel", travelRouter);
 // router
 // ========================
 mongoose.connect(process.env.DB_CONNECT, {
-  useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
+  useUnifiedTopology: true,
 });
+mongoose.connection
+  .once("open", function () {
+    console.log("Conection has been made!");
+  })
+  .on("error", function (error) {
+    console.log("Error is: ", error);
+  });
 app.get("/", (req, res) => {
   const conn = mongoose.connection;
   conn.db
