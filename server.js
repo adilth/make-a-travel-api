@@ -36,7 +36,11 @@ app.use("/travel", travelRouter);
 // ========================
 // router
 // ========================
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_CONNECT, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+});
 app.get("/", (req, res) => {
   const conn = mongoose.connection;
   conn.db
