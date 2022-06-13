@@ -1,5 +1,25 @@
 const mongoose = require("mongoose");
-
+const citySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  sight: {
+    type: Array,
+  },
+  disc: {
+    type: String,
+  },
+  Hotels: {
+    type: Array,
+  },
+  Restaurants: {
+    type: Array,
+  },
+  crimeRate: {
+    type: Number,
+  },
+});
 const travelSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -7,7 +27,7 @@ const travelSchema = new mongoose.Schema({
     unique: true,
   },
   city: {
-    type: Array,
+    type: citySchema,
     required: true,
   },
   food: {
