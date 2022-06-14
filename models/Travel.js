@@ -19,6 +19,10 @@ const citySchema = new mongoose.Schema({
   crimeRate: {
     type: Number,
   },
+  date: {
+    type: Date,
+    default: date.now(),
+  },
 });
 const travelSchema = new mongoose.Schema({
   name: {
@@ -27,7 +31,7 @@ const travelSchema = new mongoose.Schema({
     unique: true,
   },
   city: {
-    type: citySchema,
+    type: [citySchema],
     required: true,
   },
   food: {
@@ -45,6 +49,10 @@ const travelSchema = new mongoose.Schema({
   visitings: {
     type: Number,
     required: true,
+  },
+  date: {
+    type: Date,
+    default: date.now(),
   },
 });
 module.exports = mongoose.model("Travel", travelSchema);
