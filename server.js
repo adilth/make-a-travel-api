@@ -21,7 +21,7 @@ app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 app.use(express.json()); // for parsing application/json
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json({ strict: true }));
 app.use(function (err, req, res, next) {
   if (

@@ -43,6 +43,7 @@ router.post("/api/country/", async (req, res) => {
       Hotels: req.body.Hotels,
       restaurant: req.body.Restaurant,
       crimeRate: req.body.crimeRate,
+      rate: req.body.rate,
     },
     food: req.body.food,
     sight: req.body.sight,
@@ -62,7 +63,15 @@ router.post("/", async (req, res) => {
   }
   const newTravel = new Travel({
     name: req.body.name,
-    city: req.body.city,
+    city: {
+      name: req.body.city,
+      sight: req.body.sight,
+      diac: req.body.diac,
+      Hotels: req.body.Hotels,
+      restaurant: req.body.Restaurant,
+      crimeRate: req.body.crimeRate,
+      rate: req.body.rate,
+    },
     food: req.body.food,
     sight: req.body.sight,
     visitings: req.body.visitings,

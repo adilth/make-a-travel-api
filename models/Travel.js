@@ -23,6 +23,9 @@ const citySchema = new mongoose.Schema({
     type: Date,
     default: date.now(),
   },
+  rate: {
+    type: Number,
+  },
 });
 const travelSchema = new mongoose.Schema({
   name: {
