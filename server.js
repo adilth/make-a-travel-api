@@ -10,10 +10,15 @@ const mongoose = require("mongoose");
 // ========================
 // Middlewares
 // ========================
-mongoose.connect(process.env.DB_CONNECT, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+let dbName = "tests";
+mongoose
+  .connect(process.env.DB_CONNECT, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((client) => {
+    console.log(`Connected to ${dbName} Database`);
+  });
 const travelRouter = require("./routers/travel");
 app.use("/travel", travelRouter);
 
@@ -44,13 +49,13 @@ app.use(function (err, req, res, next) {
 // router
 // ========================
 
-mongoose.connection
-  .once("open", function () {
-    console.log("Conection has been made!");
-  })
-  .on("error", function (error) {
-    console.log("Error is: ", error);
-  });
+// mongoose.connection
+//   .once("open", function () {
+//     console.log("Conection has been made!");
+//   })
+//   .on("error", function (error) {
+//     console.log("Error is: ", error);
+//   });
 app.get("/", (req, res) => {
   const conn = mongoose.connection;
   conn.db
