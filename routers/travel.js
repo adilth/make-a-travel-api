@@ -34,51 +34,54 @@ router.post("/api/country/", async (req, res) => {
   // if (Travel.findOne({ name: req.body.name })) {
   //   return res.status(409).json({ message: "Please enter a Unique name." });
   // }
-  const newTravel = new Travel({
-    name: req.body.name,
-    city: [
-      {
-        cityname: req.body.cityname,
-        citySight: req.body.citySight,
-        disc: req.body.disc,
-        hotels: req.body.hotels,
-        restaurants: req.body.restaurants,
-        crimeRate: req.body.crimeRate,
-        rate: req.body.rate,
-      },
-    ],
-    food: req.body.food,
-    sight: req.body.sight,
-    visitings: req.body.visitings,
-  });
   try {
-    const newCountry = await newTravel.save();
-    res.json(newCountry);
-    // res.redirect("index.ejs");
+    let travel = await Travel.findOne({ name: req.body.name });
+
+    if (travel) {
+      return res.status(400).send("the country already exists with that name");
+    }
+
+    const result = await Travel.create(req.body);
+    res.send(result);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.log(err);
+
+    if (err.name === "ValidationError") {
+      return res.status(400).send(err.errors);
+    }
+    res.status(500).send("Something went wrong");
   }
+  // const newTravel = new Travel({
+  //   name: req.body.name,
+  //   city: {
+  //     cityname: req.body.cityname,
+  //     citySight: req.body.citySight,
+  //     disc: req.body.disc,
+  //     hotels: req.body.hotels,
+  //     restaurants: req.body.restaurants,
+  //     crimeRate: req.body.crimeRate,
+  //     rate: req.body.rate,
+  //   },
+  //   food: req.body.food,
+  //   sight: req.body.sight,
+  //   visitings: req.body.visitings,
+  // });
+  // try {
+  //   const newCountry = await newTravel.save();
+  //   res.json(newCountry);
+  //   // res.redirect("index.ejs");
+  // } catch (err) {
+  //   res.status(400).json({ message: err.message });
+  // }
 });
 router.post("/", async (req, res) => {
-  // if (Travel.findOne({ name: req.body.name })) {
-  //   return res.status(409).json({ message: "Please enter a Unique name." });
-  // }
-  const newTravel = new Travel({
-    name: req.body.name,
-    city: {
-      cityname: req.body.cityname,
-      citySight: req.body.citySight,
-      disc: req.body.disc,
-      hotels: req.body.hotels,
-      restaurants: req.body.restaurants,
-      crimeRate: req.body.crimeRate,
-      rate: req.body.rate,
-    },
-    food: req.body.food,
-    sight: req.body.sight,
-    visitings: req.body.visitings,
-  });
   try {
+    if (!Travel.findOne({ name: req.body.name })) {
+      return res
+        .status(409)
+        .json({ message: "the country already exists with that name" });
+    }
+    const newTravel = await Travel.create(req.body);
     const newCountry = await newTravel.save();
     res.json(newCountry);
   } catch (err) {
@@ -128,8 +131,11 @@ async function getName(req, res, next) {
   let country;
   try {
     country = await Travel.findOne({ name: req.params.name });
+    if (country == null) {
+      return res.status(404).json({ message: "can not find country" });
+    }
   } catch (err) {
-    return res.status(404).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
   res.country = country;
   next();
