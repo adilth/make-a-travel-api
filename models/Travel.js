@@ -1,27 +1,22 @@
 const mongoose = require("mongoose");
 const citySchema = new mongoose.Schema({
-  name: {
+  cityname: {
     type: String,
-    required: true,
   },
-  sight: {
+  citySight: {
     type: Array,
   },
   disc: {
     type: String,
   },
-  Hotels: {
-    type: Array,
+  hotels: {
+    type: [String],
   },
-  Restaurants: {
+  restaurants: {
     type: Array,
   },
   crimeRate: {
     type: Number,
-  },
-  date: {
-    type: Date,
-    default: date.now(),
   },
   rate: {
     type: Number,
@@ -35,27 +30,20 @@ const travelSchema = new mongoose.Schema({
   },
   city: {
     type: [citySchema],
-    required: true,
   },
   food: {
     type: Array,
     required: true,
   },
-  DateValid: {
-    type: Date,
-    default: Date.now(),
-  },
   sight: {
     type: Array,
-    required: true,
   },
   visitings: {
     type: Number,
-    required: true,
   },
   date: {
     type: Date,
-    default: date.now(),
+    default: Date.now(),
   },
 });
 module.exports = mongoose.model("Travel", travelSchema);

@@ -31,20 +31,22 @@ router.get("/api/country/", async (req, res) => {
 
 //create one
 router.post("/api/country/", async (req, res) => {
-  if (Travel.findOne({ name: req.body.name })) {
-    return res.status(409).json({ message: "Please enter a Unique name." });
-  }
+  // if (Travel.findOne({ name: req.body.name })) {
+  //   return res.status(409).json({ message: "Please enter a Unique name." });
+  // }
   const newTravel = new Travel({
     name: req.body.name,
-    city: {
-      name: req.body.city,
-      sight: req.body.sight,
-      diac: req.body.diac,
-      Hotels: req.body.Hotels,
-      restaurant: req.body.Restaurant,
-      crimeRate: req.body.crimeRate,
-      rate: req.body.rate,
-    },
+    city: [
+      {
+        cityname: req.body.cityname,
+        citySight: req.body.citySight,
+        disc: req.body.disc,
+        hotels: req.body.hotels,
+        restaurants: req.body.restaurants,
+        crimeRate: req.body.crimeRate,
+        rate: req.body.rate,
+      },
+    ],
     food: req.body.food,
     sight: req.body.sight,
     visitings: req.body.visitings,
@@ -52,23 +54,23 @@ router.post("/api/country/", async (req, res) => {
   try {
     const newCountry = await newTravel.save();
     res.json(newCountry);
-    res.redirect("index.ejs");
+    // res.redirect("index.ejs");
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 router.post("/", async (req, res) => {
-  if (Travel.findOne({ name: req.body.name })) {
-    return res.status(409).json({ message: "Please enter a Unique name." });
-  }
+  // if (Travel.findOne({ name: req.body.name })) {
+  //   return res.status(409).json({ message: "Please enter a Unique name." });
+  // }
   const newTravel = new Travel({
     name: req.body.name,
     city: {
-      name: req.body.city,
-      sight: req.body.sight,
-      diac: req.body.diac,
-      Hotels: req.body.Hotels,
-      restaurant: req.body.Restaurant,
+      cityname: req.body.cityname,
+      citySight: req.body.citySight,
+      disc: req.body.disc,
+      hotels: req.body.hotels,
+      restaurants: req.body.restaurants,
       crimeRate: req.body.crimeRate,
       rate: req.body.rate,
     },

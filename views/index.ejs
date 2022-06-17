@@ -11,13 +11,12 @@
 <body>
    <h1>Welcome to Our Travel API</h1>
    <div class="wraper">
-      <form action="/travel" method="post">
+      <!-- <form action="/travel" method="post">
          <label for="name">Name</label>
          <input type="text" name="name" placeholder="country name" id="country">
          <label for="city">City</label>
-         <%/*<% for (let i = 0; i < travel.city.length; i++) {%> */%>
          <input type="text" name="city[]" value="" placeholder="city " id="city">
-         <input type="text" name="city[].name" value="" placeholder="city name " id="cityName">
+         <input type="text" name="city[].cityName" value="" placeholder="city name " id="cityName">
          <input type="text" name="city[].sight[]" value="" placeholder="city sight " id="citySight">
          <input type="text" name="city[].hotels[]" value="" placeholder="city hotels" id="cityHotels">
          <input type="text" name="city[].disc" value="" placeholder="city disc" id="cityDisc">
@@ -29,7 +28,7 @@
          <input type="text" name="sight[]" value="" placeholder="city sight" id="sight">
          <input type="number" name="visitings[]" value="" placeholder="visitings" id="visitings">
          <button type="submit" class="btn">Submit</button>
-      </form>
+      </form> -->
    </div>
    <ul class="rappers">
       <% for(let i=0; i < info.length; i++) {%>
@@ -37,7 +36,7 @@
          <span><%= info[i].name %></span>
          <ul>
             <% for(let j=0; j < info[i].city.length; j++) {%>
-            <span><% info[i].city[j] %> </span>
+            <span><% info[i].city[j].cityN %> </span>
             <% } %>
          </ul>
          <span><%= info[i].food %></span>
