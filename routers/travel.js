@@ -42,7 +42,7 @@ router.post("/api/country/", async (req, res) => {
     }
 
     const result = await Travel.create(req.body);
-    res.send(result);
+    res.json(result);
   } catch (err) {
     console.log(err);
 
