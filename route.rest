@@ -1,55 +1,77 @@
-GET http://localhost:8888/travel HTTP/1.1
+GET http://localhost:3030/travel HTTP/1.1
 
 ###
 
-Get http://localhost:8888/travel/api/country
+Get http://localhost:3030/travel/api/country
 
 
 ###
-Get http://localhost:8888/travel/api/country/usa
+Get http://localhost:3030/travel/api/country/usa
 ###
-Get http://localhost:8888/travel/usa
+Get http://localhost:3030/travel/usa
 ###
-POST http://localhost:8888/travel
-Content-Type: application/json
+POST http://localhost:3030/travel
+Content-type: application/json
 
 {
-   "name": "france",
-   "city": {
-      "name": "paris",
-      "sight": ["none","none"],
-      "disc": "good city for visiting a old country",
-      "restaurants": ["reda", "red", "one"],
-      "hotels": ["hotel", "hot"],
-      "crimeRate": 24000,
-      "rate": 4.6,
+   "name": "sweden",
+   "city": [{
+      "cityname": "stokholm",
+      "citySight": ["Gamla Stan","Vasa Museum","Djurgården"],
+      "disc": "Often called the 'Venice of the North' for its waterways and lakes, Stockholm, the capital city of Sweden",
+      "hotels": ["Hilton Stockholm Slussen", "Generator Stockholm","Grand Hôtel", "Clarion Hotel Stockholm"],
+      "restaurants": ["Enskede Rackethall","Stockholms Gästabud" , "Den Gyldene Freden"],
+      "crimeRate": "51.24	Moderate",
+      "rate": 4.2
    },
-   "food": ["bread", "bouillabaise"],
-   "sight": ["eiffel", "mousem"],
-   "visitings": 780000000,
+   {
+     "cityname": "Ystad",
+      "citySight": ["Saint Petri’s Church ","Grey Friar’s Monastery","Saint Petri’s mussem"],
+      "disc": "Ystad is a town made well-known by the Kurt Wallander novels, which have been interpreted into English and adapted into several cinemas, ",
+      "hotels": ["Continental du Sud","Stora Herrestad Bed & Breakfast","Hotell Mossbylund"],
+      "restaurants": ["Villa Strandvägen", "Grändens mat", "Saluhallen Ystad"],
+      "crimeRate": "31.54	Moderate",
+      "rate": 4
+   }],
+   "website":"https://visitsweden.com/",
+   "food": ["Köttbullar, meat balls", "Janssons Frestelse, Jansson's temptation","Smörgåstårta, sandwich cake"],
+   "sight": ["Smörgåstårta, sandwich cake", "Operan (The Royal Opera)", "Skeppsholmen Island","Lapland"],
+   "visitings": 35200000,
+   "language":["Swedish"," Greek","English"]
 }
 
 ###
-POST http://localhost:8888/travel/api/country/
+POST http://localhost:3030/travel/api/country/
 Content-Type: application/json
 
 {
-   "name": "france",
-   "city": {
-      "name": "paris",
-      "sight": ["none","none"],
-      "disc": "good city for visiting a old country",
-      "restaurants": ["reda", "red", "one"],
-      "hotels": ["hotel", "hot"],
-      "crimeRate": 24000,
-      "rate": 4.6,
+   "name": "sweden",
+   "city": [{
+      "cityname": "stokholm",
+      "citySight": ["Gamla Stan","Vasa Museum","Djurgården"],
+      "disc": "Often called the 'Venice of the North' for its waterways and lakes, Stockholm, the capital city of Sweden",
+      "hotels": ["Hilton Stockholm Slussen", "Generator Stockholm","Grand Hôtel", "Clarion Hotel Stockholm"],
+      "restaurants": ["Enskede Rackethall","Stockholms Gästabud" , "Den Gyldene Freden"],
+      "crimeRate": "51.24 Moderate",
+      "rate": 4
    },
-   "food": ["bread", "bouillabaise"],
-   "sight": ["eiffel", "mousem"],
-   "visitings": 780000000,
+   {
+     "cityname": "Ystad",
+      "citySight": ["Saint Petri’s Church ","Grey Friar’s Monastery","Saint Petri’s mussem"],
+      "disc": "Ystad is a town made well-known by the Kurt Wallander novels, which have been interpreted into English and adapted into several cinemas, ",
+      "hotels": ["Continental du Sud","Stora Herrestad Bed & Breakfast","Hotell Mossbylund"],
+      "restaurants": ["Villa Strandvägen", "Grändens mat", "Saluhallen Ystad"],
+      "crimeRate": "31.54 Moderate",
+      "rate": 4
+   }],
+   "website":"https://visitsweden.com/",
+   "food": ["Köttbullar, meat balls", "Janssons Frestelse, Jansson's temptation","Smörgåstårta, sandwich cake"],
+   "sight": ["Smörgåstårta, sandwich cake", "Operan (The Royal Opera)", "Skeppsholmen Island","Lapland"],
+   "visitings": 35200000,
+   "languages":["Swedish"," Greek","English"]
 }
 
 ###
-DELETE  http://localhost:8888/travel/api/country/usa
+DELETE  http://localhost:3030/travel/api/country/sweden
 ###
 Get http://localhost:8888/travel/usa
