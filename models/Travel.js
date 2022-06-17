@@ -8,18 +8,22 @@ const citySchema = new mongoose.Schema({
   },
   disc: {
     type: String,
+    default: "none",
   },
   hotels: {
-    type: [String],
+    type: Array,
+    default: "unknown",
   },
   restaurants: {
     type: Array,
   },
   crimeRate: {
-    type: Number,
+    type: String,
+    default: "none",
   },
   rate: {
     type: Number,
+    default: 0,
   },
 });
 const travelSchema = new mongoose.Schema({
@@ -30,6 +34,10 @@ const travelSchema = new mongoose.Schema({
   },
   city: {
     type: [citySchema],
+    required: true,
+  },
+  website: {
+    type: String,
   },
   food: {
     type: Array,
@@ -40,6 +48,11 @@ const travelSchema = new mongoose.Schema({
   },
   visitings: {
     type: Number,
+    default: "unknown",
+  },
+  languages: {
+    type: Array,
+    default: "unknown",
   },
   date: {
     type: Date,
@@ -47,6 +60,7 @@ const travelSchema = new mongoose.Schema({
   },
 });
 module.exports = mongoose.model("Travel", travelSchema);
+// const City = mongoose.model("City", citySchema);
 /*
  sight: {
     type: Array,
