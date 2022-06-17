@@ -26,34 +26,34 @@ app.use(cors());
 // app.use(express.json({ strict: true }));
 const travelRouter = require("./routers/travel");
 app.use("/travel", travelRouter);
-app.use(function (err, req, res, next) {
-  if (
-    err instanceof SyntaxError &&
-    err.status === 400 &&
-    "body" in err &&
-    err.type === "entity.parse.failed"
-  ) {
-    res.status(400);
-    res.set("Content-Type", "application/json");
-    res.json({
-      message: "JSON malformed",
-    });
-  } else {
-    next();
-  }
-});
+// app.use(function (err, req, res, next) {
+//   if (
+//     err instanceof SyntaxError &&
+//     err.status === 400 &&
+//     "body" in err &&
+//     err.type === "entity.parse.failed"
+//   ) {
+//     res.status(400);
+//     res.set("Content-Type", "application/json");
+//     res.json({
+//       message: "JSON malformed",
+//     });
+//   } else {
+//     next();
+//   }
+// });
 
 // ========================
 // router
 // ========================
 
-// mongoose.connection
-//   .once("open", function () {
-//     console.log("Conection has been made!");
-//   })
-//   .on("error", function (error) {
-//     console.log("Error is: ", error);
-//   });
+mongoose.connection
+  .once("open", function () {
+    console.log("Conection has been made!");
+  })
+  .on("error", function (error) {
+    console.log("Error is: ", error);
+  });
 app.get("/", (req, res) => {
   const conn = mongoose.connection;
   conn.db
@@ -68,5 +68,5 @@ app.get("/", (req, res) => {
 // ========================
 // listen
 // ========================
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3030;
 app.listen(port);
