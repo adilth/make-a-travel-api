@@ -6,7 +6,7 @@ Get http://localhost:3030/travel/api/country
 
 
 ###
-Get http://localhost:3030/travel/api/country/usa
+Get http://localhost:3030/travel/api/country/
 ###
 Get http://localhost:3030/travel/usa
 ###
@@ -72,6 +72,22 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:3030/travel/api/country/sweden
+DELETE  http://localhost:3030/travel/62abd42661dea5e4e2efb604
 ###
-Get http://localhost:8888/travel/usa
+###
+DELETE  http://localhost:3030/travel/api/country/62abd0478b17e4be17e98a31
+###
+GET   http://localhost:3030/travel/api/country/spain
+###
+PATCH  http://localhost:3030/travel/api/country/spain
+Content-Type: application/json
+
+{
+   "city" : [
+      {
+         "cityname" : "Madrid",
+         "hotels": ["Hotel NH Madrid Zurbano", "Madrid Marriott Auditorium","Generator Madrid", "Meliá Avenida América"],
+        "restaurants": ["Trinchea","La Mi Venta","Taberna El Sur","Mas Al Sur"]
+      }
+   ]
+}
