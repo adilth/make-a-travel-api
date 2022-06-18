@@ -6,7 +6,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
+
 // ========================
 // Middlewares
 // ========================
@@ -26,22 +26,23 @@ app.use(cors());
 // app.use(express.json({ strict: true }));
 const travelRouter = require("./routers/travel");
 app.use("/travel", travelRouter);
-// app.use(function (err, req, res, next) {
-//   if (
-//     err instanceof SyntaxError &&
-//     err.status === 400 &&
-//     "body" in err &&
-//     err.type === "entity.parse.failed"
-//   ) {
-//     res.status(400);
-//     res.set("Content-Type", "application/json");
-//     res.json({
-//       message: "JSON malformed",
-//     });
-//   } else {
-//     next();
-//   }
-// });
+
+app.use(function (err, req, res, next) {
+  if (
+    err instanceof SyntaxError &&
+    err.status === 400 &&
+    "body" in err &&
+    err.type === "entity.parse.failed"
+  ) {
+    res.status(400);
+    res.set("Content-Type", "application/json");
+    res.json({
+      message: "JSON malformed",
+    });
+  } else {
+    next();
+  }
+});
 
 // ========================
 // router
@@ -54,6 +55,7 @@ mongoose.connection
   .on("error", function (error) {
     console.log("Error is: ", error);
   });
+
 app.get("/", (req, res) => {
   const conn = mongoose.connection;
   conn.db
@@ -65,6 +67,7 @@ app.get("/", (req, res) => {
     })
     .catch((error) => console.error(error));
 });
+
 // ========================
 // listen
 // ========================
