@@ -41,13 +41,14 @@ router.post("/api/country/", async (req, res) => {
       return res.status(400).send("the country already exists with that name");
     }
 
-    const result = await Travel.create(req.body);
-    res.json(result);
+    const newTravel = await Travel.create(req.body);
+    const newCountry = await newTravel.save();
+    res.json(newCountry);
   } catch (err) {
     console.log(err);
 
     if (err.name === "ValidationError") {
-      return res.status(400).send(err.errors);
+      return res.status(400).json({ message: err.message });
     }
     res.status(500).send("Something went wrong");
   }
@@ -76,10 +77,10 @@ router.post("/api/country/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
   try {
-    if (!Travel.findOne({ name: req.body.name })) {
-      return res
-        .status(409)
-        .json({ message: "the country already exists with that name" });
+    let travel = await Travel.findOne({ name: req.body.name });
+
+    if (travel) {
+      return res.status(400).send("the country already exists with that name");
     }
     const newTravel = await Travel.create(req.body);
     const newCountry = await newTravel.save();
@@ -107,21 +108,35 @@ router.patch("/api/country/:name", getName, async (req, res) => {
   if (req.body.name != null) {
     res.country.name = req.body.name;
   }
-  if (req.body.city != null) {
-    res.country.city = req.body.city;
+  if (req.body.food != null) {
+    res.country.food = req.body.food;
   }
   try {
-    const updateCounty = await res.country.save();
+    let updateCounty = await res.country.update(req.body);
     res.json(updateCounty);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
+
 //delete one
 router.delete("/api/country/:name", getName, async (req, res) => {
   try {
     await res.country.remove();
     res.json({ message: "Deleted Item" });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+});
+router.delete("/:id", async (req, res) => {
+  let country;
+
+  try {
+    if ((await Travel.findOne({ _id: req.params.id })) == null) {
+      return res.status(404).json({ message: "can not find id" });
+    }
+    country = await Travel.remove({ _id: req.params.id });
+    return res.json(country);
   } catch (err) {
     res.json({ message: err.message });
   }
