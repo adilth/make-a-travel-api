@@ -11,24 +11,29 @@
 <body>
    <h1>Welcome to Our Travel API</h1>
    <div class="wraper">
-      <!-- <form action="/travel" method="post">
+      <form action="/travel" method="post">
          <label for="name">Name</label>
          <input type="text" name="name" placeholder="country name" id="country">
          <label for="city">City</label>
          <input type="text" name="city[]" value="" placeholder="city " id="city">
-         <input type="text" name="city[].cityName" value="" placeholder="city name " id="cityName">
-         <input type="text" name="city[].sight[]" value="" placeholder="city sight " id="citySight">
+         <label for="cityname">cityname</label>
+         <input type="text" name="city[].cityname" value="" placeholder="city name " id="cityname">
+         <label for="citySight">sight</label>
+         <input type="text" name="city[].citySight[]" value="" placeholder="city sight " id="citySight">
          <input type="text" name="city[].hotels[]" value="" placeholder="city hotels" id="cityHotels">
          <input type="text" name="city[].disc" value="" placeholder="city disc" id="cityDisc">
          <input type="text" name="city[].restaurants[]" value="" placeholder="city Restaurants" id="cityRestaurants">
          <input type="number" name="city[].crimeRate" value="" placeholder="city crimeRate" id="citycrimeRate">
          <input type="number" name="city[].rate" value="" placeholder="city rate" id="cityRate">
+         <label for="website">website</label>
+         <input type="text" name="website" value="" placeholder="website" id="website">
          <label for="food">food</label>
          <input type="text" name="food[]" value="" placeholder="city food" id="food">
          <input type="text" name="sight[]" value="" placeholder="city sight" id="sight">
          <input type="number" name="visitings[]" value="" placeholder="visitings" id="visitings">
+         <input type="number" name="languages[]" value="" placeholder="languagess" id="languages">
          <button type="submit" class="btn">Submit</button>
-      </form> -->
+      </form>
    </div>
    <ul class="rappers">
       <% for(let i=0; i < info.length; i++) {%>
@@ -36,12 +41,16 @@
          <span><%= info[i].name %></span>
          <ul>
             <% for(let j=0; j < info[i].city.length; j++) {%>
-            <span><% info[i].city[j].cityN %> </span>
+            <span><% info[i].city[j].cityname %> </span>
+            <span><% info[i].city[j].citySight %> </span>
+            <span><% info[i].city[j].hotels %> </span>
             <% } %>
          </ul>
+         <span><%= info[i].website %></span>
          <span><%= info[i].food %></span>
          <span><%= info[i].sight %></span>
          <span><%= info[i].visitings %></span>
+         <span><%= info[i].languages %></span>
          <span class='fa fa-thumbs-up'></span>
          <span class='fa fa-trash'></span>
       </li>
