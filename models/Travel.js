@@ -24,6 +24,7 @@ const citySchema = new mongoose.Schema({
   rate: {
     type: Number,
     default: 0,
+    validate: (v) => v <= 5,
   },
 });
 const travelSchema = new mongoose.Schema({
