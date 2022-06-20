@@ -5,57 +5,73 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/style.css">
    <title>Travel API</title>
 </head>
 
 <body>
-   <h1>Welcome to Our Travel API</h1>
-   <div class="wraper">
-      <form action="/travel" method="post">
-         <label for="name">Name</label>
-         <input type="text" name="name" placeholder="country name" id="country">
-         <label for="city">City</label>
-         <input type="text" name="city[]" value="" placeholder="city " id="city">
-         <label for="cityname">cityname</label>
-         <input type="text" name="city[].cityname" value="" placeholder="city name " id="cityname">
-         <label for="citySight">sight</label>
-         <input type="text" name="city[].citySight[]" value="" placeholder="city sight " id="citySight">
-         <input type="text" name="city[].hotels[]" value="" placeholder="city hotels" id="cityHotels">
-         <input type="text" name="city[].disc" value="" placeholder="city disc" id="cityDisc">
-         <input type="text" name="city[].restaurants[]" value="" placeholder="city Restaurants" id="cityRestaurants">
-         <input type="number" name="city[].crimeRate" value="" placeholder="city crimeRate" id="citycrimeRate">
-         <input type="number" name="city[].rate" value="" placeholder="city rate" id="cityRate">
-         <label for="website">website</label>
-         <input type="text" name="website" value="" placeholder="website" id="website">
-         <label for="food">food</label>
-         <input type="text" name="food[]" value="" placeholder="city food" id="food">
-         <input type="text" name="sight[]" value="" placeholder="city sight" id="sight">
-         <input type="number" name="visitings[]" value="" placeholder="visitings" id="visitings">
-         <input type="number" name="languages[]" value="" placeholder="languagess" id="languages">
-         <button type="submit" class="btn">Submit</button>
-      </form>
-   </div>
-   <ul class="rappers">
-      <% for(let i=0; i < info.length; i++) {%>
-      <li class="rapper">
-         <span><%= info[i].name %></span>
-         <ul>
-            <% for(let j=0; j < info[i].city.length; j++) {%>
-            <span><% info[i].city[j].cityname %> </span>
-            <span><% info[i].city[j].citySight %> </span>
-            <span><% info[i].city[j].hotels %> </span>
+   <main class="main">
+      <h1>Welcome to Our Travel API</h1>
+      <div class="wraper">
+         <form action="/travel/api/country" method="post" id="trvel-form">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="country name" id="country">
+            <div class="city_group">
+
+
+               <label for="city">City</label>
+               <!-- <input type="text" name="city[]" value="" placeholder="city " id="city"> -->
+               <label for="cityname">cityname</label>
+               <input type="text" name="[city][cityname]" value="cityname" placeholder="city name " id="cityname">
+               <label for="citySight">sight</label>
+               <input type="text" name="[city][citySight]" value="citySight" placeholder="city sight " id="citySight">
+               <input type="text" name="[city][hotels]" value="hotels" placeholder="city hotels" id="cityHotels">
+               <input type="text" name="[city][disc]" value="disc" placeholder="city disc" id="cityDisc">
+               <input type="text" name="[city][restaurants]" value="restaurants" placeholder="city Restaurants"
+                  id="cityRestaurants">
+               <input type="text" name="[city][crimeRate]" value="crimeRate" placeholder="city crimeRate"
+                  id="citycrimeRate">
+               <input type="number" name="[city][rate]" value="rate" placeholder="city rate" id="cityRate">
+            </div>
+            <label for="website">website</label>
+            <input type="text" name="website" value="" placeholder="website" id="website">
+            <label for="food">food</label>
+            <input type="text" name="food[]" value="" placeholder="city food" id="food">
+            <input type="text" name="sight[]" value="" placeholder="city sight" id="sight">
+            <input type="number" name="visitings" value="" placeholder="visitings" id="visitings">
+            <input type="text" name="languages[]" value="" placeholder="languagess" id="languages">
+            <button type="submit" class="btn">Submit</button>
+         </form>
+      </div>
+      <div class="content">
+         <ul class="rappers">
+            <% for(let i=0; i < info.length; i++) {%>
+            <li class="rapper">
+               <span><%= info[i].name %></span>
+               <ul>
+                  <% for(let j=0; j < info[i].city.length; j++) {%>
+                  <span><%= info[i].city[j].cityname %> </span><br>
+                  <span><%= info[i].city[j].citySight %> </span><br>
+                  <span><%= info[i].city[j].disc %> </span><br>
+                  <span><%= info[i].city[j].hotels %> </span>
+                  <span><%= info[i].city[j].restaurants %> </span><br>
+                  <span><%= info[i].city[j].crimeRate %> </span>
+                  <span><%= info[i].city[j].rate %> </span>
+                  <% } %>
+               </ul>
+               <span><%= info[i].website %></span><br>
+               <span><%= info[i].food %></span><br>
+               <span><%= info[i].sight %></span>
+               <span><%= info[i].visitings %></span><br>
+               <span><%= info[i].languages %></span>
+               <span class='fa fa-thumbs-up'></span>
+               <span class='fa fa-trash'></span>
+            </li>
             <% } %>
          </ul>
-         <span><%= info[i].website %></span>
-         <span><%= info[i].food %></span>
-         <span><%= info[i].sight %></span>
-         <span><%= info[i].visitings %></span>
-         <span><%= info[i].languages %></span>
-         <span class='fa fa-thumbs-up'></span>
-         <span class='fa fa-trash'></span>
-      </li>
-      <% } %>
-   </ul>
+      </div>
+   </main>
+   <script src="js/main.js"></script>
 </body>
 
 </html>
