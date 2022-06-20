@@ -19,13 +19,13 @@ mongoose.connect(process.env.DB_CONNECT, {
 // });
 
 app.set("view engine", "ejs");
-
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 app.use(express.json()); // for parsing application/json
 app.use(cors());
 // app.use(express.json({ strict: true }));
 const travelRouter = require("./routers/travel");
 app.use("/travel", travelRouter);
+app.use(express.static("public"));
 
 app.use(function (err, req, res, next) {
   if (
