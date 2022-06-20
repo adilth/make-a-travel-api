@@ -22,7 +22,7 @@ const citySchema = new mongoose.Schema({
     default: "none",
   },
   rate: {
-    type: Number,
+    type: String,
     default: 0,
     validate: (v) => v <= 5,
   },
@@ -48,7 +48,7 @@ const travelSchema = new mongoose.Schema({
     type: Array,
   },
   visitings: {
-    type: Number,
+    type: String,
     default: "unknown",
   },
   languages: {
