@@ -13,37 +13,69 @@
    <main class="main">
       <h1>Welcome to Our Travel API</h1>
       <div class="wraper">
-         <form action="/travel/api/country" method="post" id="trvel-form">
-            <label for="name">Name</label>
-            <input type="text" name="name" placeholder="country name" id="country">
-            <div class="city_group">
-
-
-               <label for="city">City</label>
-               <!-- <input type="text" name="city[]" value="" placeholder="city " id="city"> -->
-               <label for="cityname">cityname</label>
-               <input type="text" name="[city][cityname]" value="cityname" placeholder="city name " id="cityname">
-               <label for="citySight">sight</label>
-               <input type="text" name="[city][citySight]" value="citySight" placeholder="city sight " id="citySight">
-               <input type="text" name="[city][hotels]" value="hotels" placeholder="city hotels" id="cityHotels">
-               <input type="text" name="[city][disc]" value="disc" placeholder="city disc" id="cityDisc">
-               <input type="text" name="[city][restaurants]" value="restaurants" placeholder="city Restaurants"
-                  id="cityRestaurants">
-               <input type="text" name="[city][crimeRate]" value="crimeRate" placeholder="city crimeRate"
-                  id="citycrimeRate">
-               <input type="number" name="[city][rate]" value="rate" placeholder="city rate" id="cityRate">
+         <form action="/travel/api/country" method="post" id="trvel-form" class="form">
+            <div class="form_group">
+               <label for="name">Name</label>
+               <input type="text" name="name" placeholder="country name" id="country">
             </div>
-            <label for="website">website</label>
-            <input type="text" name="website" value="" placeholder="website" id="website">
-            <label for="food">food</label>
-            <input type="text" name="food[]" value="" placeholder="city food" id="food">
-            <input type="text" name="sight[]" value="" placeholder="city sight" id="sight">
-            <input type="number" name="visitings" value="" placeholder="visitings" id="visitings">
-            <input type="text" name="languages[]" value="" placeholder="languagess" id="languages">
+            <div class="form_group">
+               <label for="cityname">cityname</label>
+               <input type="text" name="city[0].cityname" value="" placeholder="city name " id="cityname">
+            </div>
+            <div class="form_group">
+
+               <label for="citySight">sight</label>
+               <input type="text" name="city[0].citySight" value="" placeholder="city sight " id="citySight">
+            </div>
+            <div class="form_group">
+               <label for="hotels">hotels</label>
+               <input type="text" name="city[0].hotels" value="hotels" placeholder="city hotels" id="cityHotels">
+
+            </div>
+            <div class="form_group">
+               <label for="disc">disc</label>
+               <input type="text" name="city[0].disc" value="disc" placeholder="city disc" id="cityDisc">
+            </div>
+            <div class="form_group">
+               <label for="restaurants">restaurant</label>
+               <input type="text" name="city[0].restaurants" value="restaurants" placeholder="city Restaurants"
+                  id="cityRestaurants">
+            </div>
+            <div class="form_group">
+               <label for="crimeRate">crimeRate</label>
+               <input type="text" name="city[0].crimeRate" value="crimeRate" placeholder="city crimeRate"
+                  id="citycrimeRate">
+            </div>
+            <div class="form_group">
+               <label for="rate">rate</label>
+               <input type="number" name="city[0].rate" value="rate" placeholder="city rate" id="cityRate">
+            </div>
+            <div class="form_group">
+               <label for="website">website</label>
+               <input type="text" name="website" value="" placeholder="website" id="website">
+            </div>
+
+            <div class="form_group">
+               <label for="food">food</label>
+               <input type="text" name="[food]" value="" placeholder="city food" id="food">
+            </div>
+            <div class="form_group">
+               <label for="sight">sight</label>
+               <input type="text" name="sight" value="" placeholder="city sight" id="sight">
+            </div>
+            <div class="form_group">
+               <label for="visitings">visitings</label>
+               <input type="number" name="visitings" value="" placeholder="visitings" id="visitings">
+            </div>
+            <div class="form_group">
+               <label for="languages">languages</label>
+               <input type="text" name="languages" value="" placeholder="languagess" id="languages">
+            </div>
             <button type="submit" class="btn">Submit</button>
          </form>
       </div>
       <div class="content">
+         <h2 class="page-header">API content </h2>
          <ul class="rappers">
             <% for(let i=0; i < info.length; i++) {%>
             <li class="rapper">

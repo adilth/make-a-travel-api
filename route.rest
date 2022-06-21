@@ -72,22 +72,23 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:3030/travel/62abd42661dea5e4e2efb604
+DELETE  http://localhost:3030/travel/62abd491efb59377fe8fb87e
 ###
-###
-DELETE  http://localhost:3030/travel/api/country/62abd0478b17e4be17e98a31
+
+DELETE  http://localhost:3030/travel/api/country/62b0b3cf4b5426adef4ff8ff
 ###
 GET   http://localhost:3030/travel/api/country/spain
 ###
-PATCH  http://localhost:3030/travel/api/country/spain
+PATCH  http://localhost:3030/travel/api/country/egypt
 Content-Type: application/json
 
 {
-   "city" : [
-      {
-         "cityname" : "Madrid",
-         "hotels": ["Hotel NH Madrid Zurbano", "Madrid Marriott Auditorium","Generator Madrid", "Meliá Avenida América"],
-        "restaurants": ["Trinchea","La Mi Venta","Taberna El Sur","Mas Al Sur"]
-      }
-   ]
+   "website":"https://www.egypttoursportal.com/"
+}
+###
+PATCH  http://localhost:3030/travel/egypt
+Content-Type: application/json
+
+{
+   "food":"name"
 }
