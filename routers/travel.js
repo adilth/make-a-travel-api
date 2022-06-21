@@ -119,6 +119,20 @@ router.patch("/api/country/:name", getName, async (req, res) => {
   }
 });
 
+router.patch("/:name", getName, async (req, res) => {
+  const { name, food } = req.body;
+
+  try {
+    let updateCounty = await Travel.updateOne(
+      { name: req.params.name },
+      { $push: { food: food } },
+      { new: true }
+    );
+    res.json(updateCounty);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 //delete one
 router.delete("/api/country/:name", getName, async (req, res) => {
   try {
