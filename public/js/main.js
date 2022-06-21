@@ -17,4 +17,17 @@ function handleFormSubmit(event) {
 }
 
 const form = document.querySelector(".trvel-form");
-form.addEventListener("submit", handleFormSubmit);
+form.addEventListener("submit", savedata);
+
+var arrCitys = new Array();
+var arrNames = new Array();
+var arrAges = new Array();
+
+function savedata() {
+  var name = document.getElementById("name").value;
+  var city = document.getElementById("food").value;
+  var age = document.getElementById("citySight").value;
+  arrCitys[arrCitys.length] = city;
+  arrNames[arrNames.length] = name;
+  arrAges[arrAges.length] = age;
+}
