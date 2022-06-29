@@ -82,13 +82,15 @@
                <span><%= info[i].name %></span>
                <ul>
                   <% for(let j=0; j < info[i].city.length; j++) {%>
-                  <span><%= info[i].city[j].cityname %> </span><br>
-                  <span><%= info[i].city[j].citySight %> </span><br>
-                  <span><%= info[i].city[j].disc %> </span><br>
-                  <span><%= info[i].city[j].hotels %> </span>
-                  <span><%= info[i].city[j].restaurants %> </span><br>
-                  <span><%= info[i].city[j].crimeRate %> </span>
-                  <span><%= info[i].city[j].rate %> </span>
+                  <li>
+                     <span><%= info[i].city[j].cityname %> </span>
+                     <span><%= info[i].city[j].citySight %> </span>
+                     <span><%= info[i].city[j].disc %> </span>
+                     <span><%= info[i].city[j].hotels %> </span>
+                     <span><%= info[i].city[j].restaurants %> </span>
+                     <span><%= info[i].city[j].crimeRate %> </span>
+                     <span><%= info[i].city[j].rate %> </span>
+                  </li>
                   <% } %>
                </ul>
                <span><%= info[i].website %></span><br>
@@ -96,8 +98,6 @@
                <span><%= info[i].sight %></span>
                <span><%= info[i].visitings %></span><br>
                <span><%= info[i].languages %></span>
-               <span class='fa fa-thumbs-up'></span>
-               <span class='fa fa-trash'></span>
             </li>
             <% } %>
          </ul>
