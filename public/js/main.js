@@ -24,6 +24,19 @@ var arrNames = new Array();
 var arrAges = new Array();
 
 function savedata() {
+  const url = "/travel/api/country";
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(info),
+  })
+    .then((res) => res.json()) // parse response as JSON
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(`error ${err}`);
+    });
   var name = document.getElementById("name").value;
   var city = document.getElementById("food").value;
   var age = document.getElementById("citySight").value;
